@@ -1,0 +1,11 @@
+[package]
+name = "warp-server"
+version = "0.1.1"
+edition = "2021"
+
+[dependencies]
+async-graphql = "4.0"
+async-graphql-warp = "4.0"
+tokio = { version = "1.0.2", features = ["macros", "rt-multi-thread"] }
+warp = "0.3"
+chats = { path = "models/chats" }
