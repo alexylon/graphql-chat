@@ -13,6 +13,9 @@ const Chats = () => {
                 if (!subscriptionData.data) return prev;
                 const newChat = subscriptionData.data.messageSent;
 
+                // // warp-server
+                // const newChat = subscriptionData.data.messageSent.chat;
+
                 return {
                     getChats: [...prev.getChats, newChat],
                 };

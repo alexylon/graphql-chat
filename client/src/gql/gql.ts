@@ -21,6 +21,38 @@ const schema = gql`
     }
 `;
 
+// // warp-server
+// const schema = gql`
+//     type Chat {
+//         id: String!
+//         name: String!
+//         message: String!
+//     }
+//
+//     type ChatChanged {
+//         mutationType: MutationType!
+//         id: ID!
+//         chat: Chat
+//         chats: [Chat!]!
+//     }
+//
+//     type Mutation {
+//         createChat(name: String!, message: String!): [Chat!]!
+//     }
+//
+//     enum MutationType {
+//         CREATED
+//     }
+//
+//     type Query {
+//         getChats: [Chat!]!
+//     }
+//
+//     type Subscription {
+//         messageSent(mutationType: MutationType): ChatChanged!
+//     }
+// `;
+
 export const ALL_CHATS = gql`
     query allChats {
         getChats {
@@ -40,6 +72,25 @@ export const CHATS_SUBSCRIPTION = gql`
         }
     }
 `;
+
+// // warp-server
+// export const CHATS_SUBSCRIPTION = gql`
+//     subscription OnNewChat {
+//         messageSent {
+//             id
+//             chat {
+//                 id
+//                 name
+//                 message
+//             }
+//             chats {
+//                 id
+//                 name
+//                 message
+//             }
+//         }
+//     }
+// `;
 
 export const SEND_MESSAGE = gql`
     mutation createChat($name: String!, $message: String!) {

@@ -20,6 +20,20 @@ const httpLink = new HttpLink({
     credentials: "include",
 });
 
+// // warp-server
+// const wsLink = new WebSocketLink({
+//     uri: "ws://localhost:8000",
+//     options: {
+//         reconnect: true,
+//     },
+// });
+
+// // warp-server
+// const httpLink = new HttpLink({
+//     uri: "http://localhost:8000",
+//     credentials: "include",
+// });
+
 const link = split(
     ({query}) => {
         const definition = getMainDefinition(query);

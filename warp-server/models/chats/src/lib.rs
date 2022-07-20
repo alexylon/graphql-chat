@@ -1,12 +1,12 @@
 mod simple_broker;
 
-use std::{sync::Arc, time::Duration};
+use std::{sync::Arc};
 
-use async_graphql::{Context, Enum, Object, Result, Schema, Subscription, ID, Data};
+use async_graphql::{Context, Enum, Object, Result, Schema, Subscription, ID};
 use futures_util::{lock::Mutex, Stream, StreamExt};
 use simple_broker::SimpleBroker;
 use slab::Slab;
-use serde::Deserialize;
+// use serde::Deserialize;
 
 pub type ChatsSchema = Schema<Query, Mutation, Subscription>;
 
@@ -107,33 +107,14 @@ pub struct Subscription;
 
 #[Subscription]
 impl Subscription {
-    async fn message_sent(&self, _ctx: &Context<'_>) -> impl Stream<Item=Vec<Chat>> {
-        // let chats = ctx.data_unchecked::<Storage>().lock().await;
-        // let chats_vec: Vec<Chat> = chats.iter().map(|(_, chat)| chat).cloned().collect();
-        // async_stream::stream! {
-        //         yield chats_vec;
-        // }
-        SimpleBroker::<Vec<Chat>>::subscribe().filter(move |_event| {
-            async move { true }
+    async fn message_sent(&self, mutation_type: Option<MutationType>) -> impl Stream<Item=ChatChanged> {
+        SimpleBroker::<ChatChanged>::subscribe().filter(move |event| {
+            let res = if let Some(mutation_type) = mutation_type {
+                event.mutation_type == mutation_type
+            } else {
+                true
+            };
+            async move { res }
         })
-    }
-}
-
-pub type TokenSchema = Schema<Query, Mutation, Subscription>;
-
-pub struct Token(pub String);
-
-pub async fn on_connection_init(value: serde_json::Value) -> Result<Data> {
-    #[derive(Deserialize)]
-    struct Payload {
-        token: String,
-    }
-
-    if let Ok(payload) = serde_json::from_value::<Payload>(value) {
-        let mut data = Data::default();
-        data.insert(Token(payload.token));
-        Ok(data)
-    } else {
-        Err("Token is required".into())
     }
 }
