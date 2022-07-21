@@ -1,7 +1,7 @@
 import {gql} from "@apollo/client";
 
 
-const schema = gql`
+const _schema = gql`
     type Query {
         getChats: [Chat!]!
     }

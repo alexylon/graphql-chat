@@ -4,7 +4,7 @@ use async_graphql::{
     http::{playground_source, GraphQLPlaygroundConfig},
     Schema,
 };
-use async_graphql_warp::{graphql_subscription, GraphQLResponse, GraphQLWebSocket};
+use async_graphql_warp::{graphql_subscription, GraphQLResponse};
 use chats::{Mutation, Query, Storage, Subscription};
 use warp::{http::Response as HttpResponse, Filter};
 

@@ -103,13 +103,10 @@ impl Subscription {
     async fn message_sent(&self, mutation_type: Option<MutationType>) -> impl Stream<Item=ChatChanged> {
         SimpleBroker::<ChatChanged>::subscribe().filter(move |event| {
             let res = if let Some(mutation_type) = mutation_type {
-                println!("mutation_type: {}", event.mutation_type == mutation_type);
                 event.mutation_type == mutation_type
             } else {
-                println!("else");
                 true
             };
-            println!("res: {}", res);
             async move { res }
         })
     }
