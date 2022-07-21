@@ -33,7 +33,6 @@ const schema = gql`
 //         mutationType: MutationType!
 //         id: ID!
 //         chat: Chat
-//         chats: [Chat!]!
 //     }
 //
 //     type Mutation {

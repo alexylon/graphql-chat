@@ -62,7 +62,6 @@ impl Mutation {
             mutation_type: MutationType::Created,
             id: id.clone(),
             chat: Some(chat),
-            chats: None,
         });
         chats.iter().map(|(_, chat)| chat).cloned().collect()
     }
@@ -78,7 +77,6 @@ struct ChatChanged {
     mutation_type: MutationType,
     id: ID,
     chat: Option<Chat>,
-    chats: Option<Vec<Chat>>,
 }
 
 #[Object]
@@ -96,11 +94,6 @@ impl ChatChanged {
         let id = self.id.parse::<usize>()?;
         Ok(chats.get(id).cloned())
     }
-
-    async fn chats(&self, ctx: &Context<'_>) -> Result<Vec<Chat>> {
-        let chats = ctx.data_unchecked::<Storage>().lock().await;
-        Ok(chats.iter().map(|(_, chat)| chat).cloned().collect())
-    }
 }
 
 pub struct Subscription;
@@ -110,10 +103,13 @@ impl Subscription {
     async fn message_sent(&self, mutation_type: Option<MutationType>) -> impl Stream<Item=ChatChanged> {
         SimpleBroker::<ChatChanged>::subscribe().filter(move |event| {
             let res = if let Some(mutation_type) = mutation_type {
+                println!("mutation_type: {}", event.mutation_type == mutation_type);
                 event.mutation_type == mutation_type
             } else {
+                println!("else");
                 true
             };
+            println!("res: {}", res);
             async move { res }
         })
     }
