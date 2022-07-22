@@ -18,6 +18,7 @@ There is an option to use Rust async-graphql running on warp server.
 - `/graphql`: has `createChat` mutation and `allChats` query resolvers
 - `/subscriptions`: has `messageSent` subscription
 
+Used the following [tutorial](https://dev.to/dsckiitdev/build-a-chat-app-with-graphql-subscriptions-typescript-part-1-2p70) as a starting point.
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
 
@@ -33,5 +34,4 @@ Instead of running the TS server you can run Rust warp-server with
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-rust.svg)](https://forthebadge.com)
 
-Used the following [tutorial](https://dev.to/dsckiitdev/build-a-chat-app-with-graphql-subscriptions-typescript-part-1-2p70) as a starting point.
 
