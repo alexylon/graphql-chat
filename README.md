@@ -30,5 +30,8 @@ Instead of running the TS server you can run Rust warp-server with
 - Run the client (see above)
 - Visit `localhost:8000` to view GraphQL Playground. All queries, mutations and subscriptions are on `/`.
 
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-rust.svg)](https://forthebadge.com)
+
 Used the following [tutorial](https://dev.to/dsckiitdev/build-a-chat-app-with-graphql-subscriptions-typescript-part-1-2p70) as a starting point.
 
