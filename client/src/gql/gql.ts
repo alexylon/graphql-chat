@@ -22,7 +22,7 @@ const _schema = gql`
 `;
 
 // // warp-server
-// const schema = gql`
+// const _schema = gql`
 //     type Chat {
 //         id: String!
 //         name: String!
@@ -78,11 +78,6 @@ export const CHATS_SUBSCRIPTION = gql`
 //         messageSent {
 //             id
 //             chat {
-//                 id
-//                 name
-//                 message
-//             }
-//             chats {
 //                 id
 //                 name
 //                 message
