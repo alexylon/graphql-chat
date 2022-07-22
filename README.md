@@ -19,7 +19,7 @@ There is an option to use Rust async-graphql running on warp server.
 - `/subscriptions`: has `messageSent` subscription
 
 
-  [![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
 
 OR
 
